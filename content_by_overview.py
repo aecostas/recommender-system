@@ -41,7 +41,7 @@ q_movies = metadata.copy().loc[metadata['vote_count'] >= m]
 # Replace NaN with an empty string
 q_movies['overview'] = q_movies['overview'].fillna('')
 
-# I need to add this line because q_movies had the 
+# I need to add this line because q_movies had the
 # original index, what will cause an exception in get_recommendation
 q_movies = q_movies.reset_index(drop=True)
 
