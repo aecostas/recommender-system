@@ -116,9 +116,18 @@ for feature in features:
 q_movies['soup'] = q_movies.apply(create_soup, axis=1)
 
 count = CountVectorizer(stop_words='english')
+
 count_matrix = count.fit_transform(q_movies['soup'])
+
 cosine_sim = cosine_similarity(count_matrix, count_matrix)
 q_movies = q_movies.reset_index()
 indices = pd.Series(q_movies.index, index=q_movies['title'])
 
-print(get_recommendations('The Dark Knight Rises', indices, q_movies, cosine_sim))
+recommendations = get_recommendations('The Dark Knight Rises', indices, q_movies, cosine_sim)
+
+print(recommendations)
+
+for key, value in recommendations.items():
+	movie = metadata[metadata['id'] == key]
+	print(key, movie)
+	print('==============')

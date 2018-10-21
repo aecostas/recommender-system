@@ -55,4 +55,6 @@ cosine_sim = linear_kernel(tfidf_matrix, tfidf_matrix)
 # Construct a reverse map of indices and movie titles
 indices = pd.Series(q_movies.index, index=q_movies['title']).drop_duplicates()
 
-print (get_recommendations('The Dark Knight Rises', indices, q_movies, cosine_sim))
+recommendations = get_recommendations('The Dark Knight Rises', indices, q_movies, cosine_sim)
+
+print(vars(recommendations))
